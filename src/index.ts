@@ -2,6 +2,7 @@ import { configDotenv } from 'dotenv';
 import {sql} from './database/connection';
 import express from 'express';
 import authRoutes from "./routes/auth";
+import travelRoutes from "./routes/travel";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 //Rotas
 app.use("/auth", authRoutes);
+app.use("/travel", travelRoutes);
 
 
 
