@@ -162,19 +162,15 @@ export class TravelService {
         const baseDir = path.resolve(process.cwd(), "temp/itinerary")
 
 
-        const idItineraryMd = v4()
-        // gera nome único
+        const idItineraryMd = v4() 
         const now = new Date();
         const nameItineraryMD = `itinerary-${idItineraryMd}.md`;
-
-        // garante pasta
+ 
         fs.mkdirSync(baseDir, { recursive: true });
-
-        // escreve arquivo .md
+ 
         const filePath = path.join(baseDir, nameItineraryMD);
         await fs.promises.writeFile(filePath, text, { encoding: "utf8" });
-
-        // metadados
+ 
         const size = Buffer.byteLength(text, "utf8");
         const sha256 = crypto.createHash("sha256").update(text).digest("hex");
 

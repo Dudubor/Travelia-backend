@@ -11,8 +11,6 @@ configDotenv();
 
 const port = process.env.PORT_DEV;
 
-
-//Verificacao de conexao com o banco de dados
 sql;
 
 
@@ -29,10 +27,6 @@ app.use(cookieParser());
 //Rotas
 app.use("/auth", authRoutes);
 app.use("/travel", travelRoutes);
-
-
-
-
 
 
 app.listen(port, () => {

@@ -194,8 +194,7 @@ export function parseItineraryMarkdown(md: string): {
 
   let current: DaySection | null = null;
   let seenFirstDay = false as boolean;
-
-  // Controle de captura das seções extras
+ 
   type CaptureMode = "none" | "checklist" | "orcamento";
   let capture: CaptureMode = "none";
 
@@ -212,33 +211,26 @@ export function parseItineraryMarkdown(md: string): {
   };
 
   for (const raw of lines) {
-    const line = raw.trim();
-
-    // 1) Quebra/fechamento da captura ao encontrar QUALQUER heading novo
+    const line = raw.trim(); 
     if (capture !== "none" && /^#{1,6}\s+/.test(raw)) {
-      capture = "none";
-      // não damos continue aqui: deixamos o heading ser processado abaixo
+      capture = "none"; 
     }
-
-    // 2) Detecta headings e liga captura quando forem os alvos
+ 
     const h = raw.match(/^\s*#{1,6}\s*(.+?)\s*$/);
     if (h) {
       const title = h[1];
-      const f = fold(title);
-
-      // Aceita "Checklist final" (variações) e "Estimativa geral de orçamento" (sem/with acento)
+      const f = fold(title); 
       if (/^checklist(\s+final)?$/.test(f)) {
         capture = "checklist";
-        continue; // pula a linha do título
+        continue;  
       }
       if (f.includes("estimativa") && (f.includes("orcamento") || f.includes("orçamento"))) {
         capture = "orcamento";
-        continue; // pula a linha do título
+        continue;  
       }
-      // Não é um dos alvos => segue o fluxo normal (pode ser "Dia X", etc.)
+      
     }
-
-    // 3) Se estamos em captura, empilha as linhas e segue
+ 
     if (capture === "checklist") {
       if (line.length > 0) checklistFinal.push(raw);
       continue;
@@ -246,9 +238,7 @@ export function parseItineraryMarkdown(md: string): {
     if (capture === "orcamento") {
       if (line.length > 0) estimativaGeralOrcamento.push(raw);
       continue;
-    }
-
-    // 4) Daqui pra baixo é o parser dos "Dias"
+    } 
     if (dayHeaderRegex.test(line)) {
       seenFirstDay = true;
       const titleText = line.replace(/^#{1,3}\s*/, "").trim();
