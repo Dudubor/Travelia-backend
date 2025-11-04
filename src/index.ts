@@ -15,7 +15,7 @@ sql;
 
 
 app.use(cors({
-  origin: ['https://ambitious-ocean-0ca5a460f.3.azurestaticapps.net',"https://<swa>.azurestaticapps.net",  'http://localhost:8080', 'http://192.168.100.166:8080/'],
+  origin: ['https://traveliafront-m0ofubfec-eduardos-projects-3d6d7e8e.vercel.app','https://ambitious-ocean-0ca5a460f.3.azurestaticapps.net',"https://<swa>.azurestaticapps.net",  'http://localhost:8080', 'http://192.168.100.166:8080/'],
   credentials: true, 
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
   allowedHeaders: ["Content-Type", "Authorization"], 
