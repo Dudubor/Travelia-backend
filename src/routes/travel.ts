@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { createItinerary, getTravels, getTravelByMd, getItineraryMd, fetchItineraryInfo } from "../controllers/travel";
-import { authRequired } from "../middlewares/authMiddleware";
+import { createItinerary, getTravels, getTravelByMd, getItineraryMd, fetchItineraryInfo } from "../controllers/travel.js";
+import { authRequired } from "../middlewares/authMiddleware.js";
 
 const router = Router();
 router.post("/createItinerary", authRequired, createItinerary);

@@ -1,8 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { env } from "../config/env";
-import { sql } from "../database/connection";
-import type { LoginDTO, RegisterDTO } from "../validators/auth.validators";
+import { env } from "../config/env.js";
+import { sql } from "../database/connection.js";
+import type { LoginDTO, RegisterDTO } from "../validators/auth.validators.js";
 import { success } from "zod";
 type SafeUser = {
   id: string;

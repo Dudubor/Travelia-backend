@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { env } from "../config/env";
+import { env } from "../config/env.js";
 
 export function authRequired(req: Request, res: Response, next: NextFunction) {
   const auth = req.header("authorization") || "";

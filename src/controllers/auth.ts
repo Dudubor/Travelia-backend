@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { authService } from "../services/auth";
-import { loginSchema, registerSchema, forgotPasswordSchema } from "../validators/auth.validators";
+import { authService } from "../services/auth.js";
+import { loginSchema, registerSchema, forgotPasswordSchema } from "../validators/auth.validators.js";
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {

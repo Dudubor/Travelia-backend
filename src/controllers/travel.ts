@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { travelService } from "../services/travel";
+import { travelService } from "../services/travel.js";
 
 interface DaySection {
   id: string;
