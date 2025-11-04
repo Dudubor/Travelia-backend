@@ -3,7 +3,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 import tmp from "tmp";
 import crypto from "node:crypto"
-import { sql } from "../database/connection";
+import { sql } from "../database/connection.js";
 import path from "path";
 import OpenAI from 'openai';
 import { console } from "inspector";

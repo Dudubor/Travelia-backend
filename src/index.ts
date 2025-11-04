@@ -1,8 +1,8 @@
 import { configDotenv } from 'dotenv';
-import {sql} from './database/connection';
+import {sql} from './database/connection.js';
 import express from 'express';
-import authRoutes from "./routes/auth";
-import travelRoutes from "./routes/travel";
+import authRoutes from "./routes/auth.js";
+import travelRoutes from "./routes/travel.js";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 

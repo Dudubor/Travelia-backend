@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { forgotPassword, login, me, register } from "../controllers/auth";
-import { authRequired } from "../middlewares/authMiddleware";
+import { forgotPassword, login, me, register } from "../controllers/auth.js";
+import { authRequired } from "../middlewares/authMiddleware.js";
 
 const router = Router();
 
