@@ -28,6 +28,9 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/travel", travelRoutes);
 
+app.get('/', (req, res) => {
+  res.send('Requisicao feita com sucesso');
+});
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
