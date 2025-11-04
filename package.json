@@ -7,7 +7,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "lint": "eslint . --ext .ts,.tsx",
-     "test": "echo \"No test specified\" && exit 0"
+    "test": "echo \"No test specified\" && exit 0"
   },
   "engines": {
     "node": ">=20"
