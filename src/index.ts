@@ -15,7 +15,7 @@ sql;
 
 
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN_LOCAL || process.env.CLIENT_ORIGIN_NET,
+  origin: ["https://<swa>.azurestaticapps.net", 'http://localhost:8080', 'http://192.168.100.166:8080/'],
   credentials: true, 
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], 
   allowedHeaders: ["Content-Type", "Authorization"], 
