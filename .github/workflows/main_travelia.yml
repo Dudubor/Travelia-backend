@@ -1,25 +1,59 @@
-name: deploy-backend
+name: deploy-backend-windows
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
+
 permissions:
   id-token: write
   contents: read
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # OIDC login (sem secrets)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+      - run: npm run build --if-present
+
+      # Empacota somente o necessário para o App Service:
+      - name: Prepare artifact
+        run: |
+          mkdir deploy
+          cp -R dist deploy/dist
+          cp package.json deploy/package.json
+          cp package-lock.json deploy/package-lock.json || true
+          cp web.config deploy/web.config
+          # Se usa Prisma/Migrations/anything-needed em runtime, copie aqui também:
+          # cp -R prisma deploy/prisma
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app
+          path: deploy
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: app
+          path: .
+
+      # Login via OIDC (sem publish profile/FTP)
       - uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-      # Publica o repositório inteiro; o servidor Linux roda o Oryx (npm install, etc.)
       - uses: azure/webapps-deploy@v3
         with:
           app-name: Travelia
