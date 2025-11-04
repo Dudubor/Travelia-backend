@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 const app = express();
 configDotenv();
 
-const port = process.env.PORT_DEV;
+const port = process.env.PORT_DEV || 3000;
 
 sql;
 
@@ -31,6 +31,8 @@ app.use("/travel", travelRoutes);
 app.get('/', (req, res) => {
   res.send('Requisicao feita com sucesso');
 });
+app.get('/healthz', (_,res)=>res.send('ok'));
+
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
